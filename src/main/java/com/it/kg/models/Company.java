@@ -9,24 +9,24 @@ public class Company {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "company_id")
     private Long id;
     @Column(name = "company_name")
     private String companyName;
     @Column(name = "number_of_staff")
     private int numberOfStaff;
     @OneToOne
+    @JoinColumn(name = "president_id")
     private President president;
-    @OneToMany
+    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
     private List<Course> courses;
 
     public Company() {
     }
 
-    public Company(String companyName, int numberOfStaff, President president, List<Course> courses) {
+    public Company(String companyName, int numberOfStaff) {
         this.companyName = companyName;
         this.numberOfStaff = numberOfStaff;
-        this.president = president;
-        this.courses = courses;
     }
 
     public Long getId() {
@@ -71,7 +71,7 @@ public class Company {
 
     @Override
     public String toString() {
-        return "Company{" +
+        return "\nCompany{" +
                 "id=" + id +
                 ", companyName='" + companyName + '\'' +
                 ", numberOfStaff=" + numberOfStaff +
