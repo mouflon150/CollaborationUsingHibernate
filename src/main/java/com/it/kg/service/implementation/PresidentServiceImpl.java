@@ -1,10 +1,8 @@
-package com.it.kg.service.serviceImpl;
+package com.it.kg.service.implementation;
 
 import com.it.kg.models.President;
 import com.it.kg.repository.PresidentRepository;
 import com.it.kg.service.PresidentService;
-
-import java.util.List;
 
 public class PresidentServiceImpl implements PresidentService {
 

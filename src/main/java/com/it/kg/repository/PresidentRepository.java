@@ -31,7 +31,7 @@ public class PresidentRepository {
             p.setFullName(newPresident.getFullName());
             p.setAge(newPresident.getAge());
             p.setGender(newPresident.getGender());
-            p.setCompany(newPresident.getCompany());
+//            p.setCompany(newPresident.getCompany());
             session.saveOrUpdate(p);
             session.getTransaction().commit();
         }

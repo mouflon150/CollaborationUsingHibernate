@@ -1,4 +1,4 @@
-package com.it.kg.service.serviceImpl;
+package com.it.kg.service.implementation;
 
 import com.it.kg.models.Student;
 import com.it.kg.service.StudentService;
