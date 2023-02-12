@@ -21,11 +21,10 @@ public class Student {
     public Student() {
     }
 
-    public Student(String fullName, int age, String gender, Course course) {
+    public Student(String fullName, int age, String gender) {
         this.fullName = fullName;
         this.age = age;
         this.gender = gender;
-        this.course = course;
     }
 
     public Long getId() {

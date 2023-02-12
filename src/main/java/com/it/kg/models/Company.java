@@ -18,7 +18,7 @@ public class Company {
     @OneToOne
     @JoinColumn(name = "president_id")
     private President president;
-    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Course> courses;
 
     public Company() {
