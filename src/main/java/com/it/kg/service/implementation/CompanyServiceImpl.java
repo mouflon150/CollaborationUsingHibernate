@@ -19,6 +19,11 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     @Override
+    public void updateById(Long id, Company newCompany) {
+
+    }
+
+    @Override
     public void clear() {
         CompanyRepository companyRepository = new CompanyRepository();
         companyRepository.clear();
