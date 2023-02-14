@@ -25,6 +25,18 @@ public class CompanyRepository {
         }
     }
 
+    public void updateById(Long id, Company newCompany) {
+        try (Session session = sessionFactory.openSession()) {
+            session.beginTransaction();
+            Company c = getByID(id);
+            c.setCompanyName(newCompany.getCompanyName());
+            c.setCourses(newCompany.getCourses());
+            c.setNumberOfStaff(newCompany.getNumberOfStaff());
+            session.saveOrUpdate(c);
+            session.getTransaction().commit();
+        }
+    }
+
     public void clear() {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
