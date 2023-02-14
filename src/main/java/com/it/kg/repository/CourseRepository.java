@@ -8,6 +8,7 @@ import org.hibernate.SessionFactory;
 import java.util.List;
 
 public class CourseRepository {
+
     private final SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
     public void save(Course course) {
