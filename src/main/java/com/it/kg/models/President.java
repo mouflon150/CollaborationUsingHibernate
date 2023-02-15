@@ -14,10 +14,8 @@ public class President {
     private String fullName;
     private Byte age;
     private String gender;
-//    @OneToOne(cascade = CascadeType.ALL, mappedBy = "president")
-//    @MapsId
-//    @PrimaryKeyJoinColumn
-//    private Company company;
+    @OneToOne(mappedBy = "president", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Company company;
 
     public President() {
     }
@@ -59,14 +57,14 @@ public class President {
     public void setGender(String gender) {
         this.gender = gender;
     }
-//
-//    public Company getCompany() {
-//        return company;
-//    }
-//
-//    public void setCompany(Company company) {
-//        this.company = company;
-//    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
 
     @Override
     public String toString() {
@@ -75,7 +73,7 @@ public class President {
                 ", fullName='" + fullName + '\'' +
                 ", age=" + age +
                 ", gender='" + gender + '\'' +
-//                ", company=" + company +
+                ", company=" + company +
                 '}';
     }
 }

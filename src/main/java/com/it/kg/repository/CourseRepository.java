@@ -32,7 +32,7 @@ public class CourseRepository {
             c.setCourseName(newCourse.getCourseName());
             c.setStaff(newCourse.getStaff());
             session.saveOrUpdate(c);
-            session.beginTransaction().commit();
+            session.getTransaction().commit();
         }
     }
 

@@ -15,7 +15,7 @@ public class Company {
     private String companyName;
     @Column(name = "number_of_staff")
     private int numberOfStaff;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "president_id")
     private President president;
     @OneToMany(mappedBy = "company", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -75,7 +75,7 @@ public class Company {
                 "id=" + id +
                 ", companyName='" + companyName + '\'' +
                 ", numberOfStaff=" + numberOfStaff +
-                ", president=" + president +
+//                ", president=" + president +
                 ", courses=" + courses +
                 '}';
     }
