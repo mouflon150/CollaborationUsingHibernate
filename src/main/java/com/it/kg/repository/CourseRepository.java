@@ -4,6 +4,7 @@ import com.it.kg.configuration.HibernateUtil;
 import com.it.kg.models.Course;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.SessionFactory;
 
 import java.util.List;
 
@@ -57,4 +58,5 @@ public class CourseRepository {
             session.getTransaction().commit();
         }
     }
+
 }
