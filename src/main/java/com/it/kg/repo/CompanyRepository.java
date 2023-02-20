@@ -1,12 +1,13 @@
-package com.it.kg.repository;
+package com.it.kg.repo;
 
 import com.it.kg.configuration.HibernateUtil;
 import com.it.kg.models.Company;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import java.util.List;
+import javax.transaction.Transactional;
 
+@Transactional
 public class CompanyRepository {
 
     private final SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
@@ -22,6 +23,15 @@ public class CompanyRepository {
         try (Session session = sessionFactory.openSession()) {
             return session.get(Company.class, id);
 
+        }
+    }
+
+    public void deleteById(Long id) {
+        try (Session session = sessionFactory.openSession()) {
+            session.beginTransaction();
+            Company company = getByID(id);
+            session.delete(company);
+            session.getTransaction().commit();
         }
     }
 
@@ -42,7 +52,6 @@ public class CompanyRepository {
             session.beginTransaction();
             session.createQuery("delete from Company c").executeUpdate();
             session.getTransaction().commit();
-
         }
     }
 }

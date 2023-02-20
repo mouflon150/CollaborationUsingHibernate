@@ -14,18 +14,24 @@ public class Course {
     @Column(name = "course_name")
     private String courseName;
     private Short staff;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne//(fetch = FetchType.EAGER)
     @JoinColumn(name = "company_id")
     private Company company;
-    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "course", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     private List<Student> students;
+
+    public void removeStudent(Student student) {
+        students.remove(student);
+        student.setCourse(null);
+    }
 
     public Course() {
     }
 
-    public Course(String courseName, Short staff) {
+    public Course(String courseName, Short staff, Company company) {
         this.courseName = courseName;
         this.staff = staff;
+        this.company = company;
     }
 
     public Long getId() {
@@ -70,7 +76,7 @@ public class Course {
 
     @Override
     public String toString() {
-        return "Course{" +
+        return "\nCourse{" +
                 "id=" + id +
                 ", courseName='" + courseName + '\'' +
                 ", staff=" + staff +

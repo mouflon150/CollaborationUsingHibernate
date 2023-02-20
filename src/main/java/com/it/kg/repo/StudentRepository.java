@@ -1,36 +1,38 @@
-package com.it.kg.repository;
+package com.it.kg.repo;
 
 import com.it.kg.configuration.HibernateUtil;
-import com.it.kg.models.Course;
+import com.it.kg.models.Student;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.SessionFactory;
 
+import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 
-public class CourseRepository {
+@Transactional
+public class StudentRepository {
 
     private final SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
-    public void save(Course course) {
+    public void save(Student student) {
         try (Session session = sessionFactory.openSession()) {
-            session.save(course);
-
+            session.save(student);
         }
     }
 
-    public Course getById(Long id) {
+    public Student getById(Long id) {
         try (Session session = sessionFactory.openSession()) {
-            return session.get(Course.class, id);
+            return session.get(Student.class, id);
         }
     }
 
-    public void  updateById(Long id, Course newCourse) {
+    public void updateById(Long id, Student newStudent) {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
-            Course c = getById(id);
-            c.setCourseName(newCourse.getCourseName());
-            c.setStaff(newCourse.getStaff());
+            Student c = getById(id);
+            c.setFullName(newStudent.getFullName());
+            c.setAge(newStudent.getAge());
+            c.setGender(newStudent.getGender());
             session.saveOrUpdate(c);
             session.getTransaction().commit();
         }
@@ -39,24 +41,23 @@ public class CourseRepository {
     public void deleteById(Long id) {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
-            Course course = getById(id);
-            session.delete(course);
+            Student student = getById(id);
+            session.delete(student);
             session.getTransaction().commit();
         }
     }
 
     public List findAll() {
         try (Session session = sessionFactory.openSession()) {
-            return session.createQuery("select c from Course c").getResultList();
+            return session.createQuery("select c from Student c").getResultList();
         }
     }
 
     public void clear() {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
-            session.createQuery("delete from Course c ").executeUpdate();
+            session.createQuery("delete from Student c").executeUpdate();
             session.getTransaction().commit();
         }
     }
-
 }

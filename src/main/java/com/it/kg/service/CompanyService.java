@@ -11,6 +11,8 @@ public interface CompanyService {
 
     Company getById(Long id);
 
+    void deleteById(Long id);
+
     void updateById(Long id, Company newCompany);
 
     void clear();

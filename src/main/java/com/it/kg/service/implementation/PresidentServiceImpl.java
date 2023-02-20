@@ -1,9 +1,12 @@
 package com.it.kg.service.implementation;
 
 import com.it.kg.models.President;
-import com.it.kg.repository.PresidentRepository;
+import com.it.kg.repo.PresidentRepository;
 import com.it.kg.service.PresidentService;
 
+import javax.transaction.Transactional;
+
+@Transactional
 public class PresidentServiceImpl implements PresidentService {
 
     @Override
@@ -16,6 +19,12 @@ public class PresidentServiceImpl implements PresidentService {
     public President getById(Long id) {
         PresidentRepository presidentRepository = new PresidentRepository();
         return presidentRepository.getById(id);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        PresidentRepository presidentRepository = new PresidentRepository();
+        presidentRepository.deleteById(id);
     }
 
     @Override

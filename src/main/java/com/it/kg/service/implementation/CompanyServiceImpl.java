@@ -1,9 +1,12 @@
 package com.it.kg.service.implementation;
 
 import com.it.kg.models.Company;
-import com.it.kg.repository.CompanyRepository;
+import com.it.kg.repo.CompanyRepository;
 import com.it.kg.service.CompanyService;
 
+import javax.transaction.Transactional;
+
+@Transactional
 public class CompanyServiceImpl implements CompanyService {
 
     @Override
@@ -19,6 +22,12 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     @Override
+    public void deleteById(Long id) {
+        CompanyRepository companyRepository = new CompanyRepository();
+        companyRepository.deleteById(id);
+    }
+
+    @Override
     public void updateById(Long id, Company newCompany) {
         CompanyRepository companyRepository = new CompanyRepository();
         companyRepository.updateById(id, newCompany);
@@ -28,6 +37,5 @@ public class CompanyServiceImpl implements CompanyService {
     public void clear() {
         CompanyRepository companyRepository = new CompanyRepository();
         companyRepository.clear();
-
     }
 }

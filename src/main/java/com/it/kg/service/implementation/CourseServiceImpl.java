@@ -1,11 +1,13 @@
 package com.it.kg.service.implementation;
 
 import com.it.kg.models.Course;
-import com.it.kg.repository.CourseRepository;
+import com.it.kg.repo.CourseRepository;
 import com.it.kg.service.CourseService;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
+@Transactional
 public class CourseServiceImpl implements CourseService {
 
     @Override

@@ -3,7 +3,7 @@ package com.it.kg.models;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "student")
+@Table(name = "students")
 public class Student {
 
     @Id
@@ -14,17 +14,18 @@ public class Student {
     private String fullName;
     private int age;
     private String gender;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "course_id")
     private Course course;
 
     public Student() {
     }
 
-    public Student(String fullName, int age, String gender) {
+    public Student(String fullName, int age, String gender, Course course) {
         this.fullName = fullName;
         this.age = age;
         this.gender = gender;
+        this.course = course;
     }
 
     public Long getId() {

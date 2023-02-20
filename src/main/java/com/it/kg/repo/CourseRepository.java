@@ -1,59 +1,64 @@
-package com.it.kg.repository;
+package com.it.kg.repo;
 
 import com.it.kg.configuration.HibernateUtil;
-import com.it.kg.models.Student;
+import com.it.kg.models.Course;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
-public class StudentRepository {
+@Transactional
+public class CourseRepository {
 
     private final SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
-    public void save(Student student) {
+    public void save(Course course) {
         try (Session session = sessionFactory.openSession()) {
-            session.save(student);
+            session.save(course);
         }
     }
 
-    public Student getById(Long id) {
+    public Course getById(Long id) {
         try (Session session = sessionFactory.openSession()) {
-            return session.get(Student.class, id);
+            return session.get(Course.class, id);
         }
     }
 
-    public void updateById(Long id, Student newStudent) {
+    public void updateById(Long id, Course newCourse) {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
-            Student c = getById(id);
-            c.setFullName(newStudent.getFullName());
-            c.setAge(newStudent.getAge());
-            c.setGender(newStudent.getGender());
+            Course c = getById(id);
+            c.setCourseName(newCourse.getCourseName());
+            c.setStaff(newCourse.getStaff());
             session.saveOrUpdate(c);
             session.getTransaction().commit();
         }
     }
 
-    public void deleteById(long id) {
+    public void deleteById(Long id) {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
-            Student student = getById(id);
-            session.delete(student);
-            session.getTransaction();
+            Course course = getById(id);
+            if (course == null) {
+                throw new IllegalArgumentException("Cannot delete course with id " + id + ". Course not found.");
+            }
+            session.delete(course);
+            session.getTransaction().commit();
         }
     }
 
+
     public List findAll() {
         try (Session session = sessionFactory.openSession()) {
-            return session.createQuery("select c from Student c").getResultList();
+            return session.createQuery("select c from Course c").getResultList();
         }
     }
 
     public void clear() {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
-            session.createQuery("delete from Student c ").executeUpdate();
+            session.createQuery("delete from Course c").executeUpdate();
             session.getTransaction().commit();
         }
     }

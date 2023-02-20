@@ -1,13 +1,14 @@
-package com.it.kg.repository;
+package com.it.kg.repo;
 
 import com.it.kg.configuration.HibernateUtil;
-import com.it.kg.models.Company;
 import com.it.kg.models.President;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import java.util.List;
+import javax.transaction.Transactional;
 
+
+@Transactional
 public class PresidentRepository {
 
     private final SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
@@ -24,6 +25,15 @@ public class PresidentRepository {
         }
     }
 
+    public void deleteById(Long id) {
+        try (Session session = sessionFactory.openSession()) {
+            session.beginTransaction();
+            President president = getById(id);
+            session.delete(president);
+            session.getTransaction().commit();
+        }
+    }
+
     public void updateById(Long id, President newPresident) {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
@@ -31,7 +41,6 @@ public class PresidentRepository {
             p.setFullName(newPresident.getFullName());
             p.setAge(newPresident.getAge());
             p.setGender(newPresident.getGender());
-//            p.setCompany(newPresident.getCompany());
             session.saveOrUpdate(p);
             session.getTransaction().commit();
         }

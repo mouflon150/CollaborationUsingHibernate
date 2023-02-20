@@ -14,16 +14,17 @@ public class President {
     private String fullName;
     private Byte age;
     private String gender;
-    @OneToOne(mappedBy = "president", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToOne(mappedBy = "president", cascade = CascadeType.ALL)
     private Company company;
-
-    public President() {
-    }
 
     public President(String fullName, Byte age, String gender) {
         this.fullName = fullName;
         this.age = age;
         this.gender = gender;
+    }
+
+    public President() {
+
     }
 
     public Long getId() {

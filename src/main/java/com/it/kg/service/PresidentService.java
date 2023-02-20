@@ -8,6 +8,8 @@ public interface PresidentService {
 
     President getById(Long id);
 
+    void deleteById(Long id);
+
     void updateById(Long id, President newPresident);
 
     void clear();

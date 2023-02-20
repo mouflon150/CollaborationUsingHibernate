@@ -1,11 +1,13 @@
 package com.it.kg.service.implementation;
 
 import com.it.kg.models.Student;
-import com.it.kg.repository.StudentRepository;
+import com.it.kg.repo.StudentRepository;
 import com.it.kg.service.StudentService;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
+@Transactional
 public class StudentServiceImpl implements StudentService {
 
     @Override

@@ -15,18 +15,19 @@ public class Company {
     private String companyName;
     @Column(name = "number_of_staff")
     private int numberOfStaff;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne//(fetch = FetchType.EAGER)
     @JoinColumn(name = "president_id")
     private President president;
-    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Course> courses;
 
     public Company() {
     }
 
-    public Company(String companyName, int numberOfStaff) {
+    public Company(String companyName, int numberOfStaff, President president) {
         this.companyName = companyName;
         this.numberOfStaff = numberOfStaff;
+        this.president = president;
     }
 
     public Long getId() {
@@ -65,7 +66,7 @@ public class Company {
         return courses;
     }
 
-    public void setCourses(List<Course> courses) {
+    public void setCourses (List<Course> courses) {
         this.courses = courses;
     }
 
