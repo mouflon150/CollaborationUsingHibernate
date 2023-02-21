@@ -9,33 +9,30 @@ import javax.transaction.Transactional;
 @Transactional
 public class CompanyServiceImpl implements CompanyService {
 
+    private static final CompanyRepository companyRepo = new CompanyRepository();
+
     @Override
     public void save(Company company) {
-        CompanyRepository companyRepository = new CompanyRepository();
-        companyRepository.save(company);
+        companyRepo.save(company);
     }
 
     @Override
     public Company getById(Long id) {
-        CompanyRepository companyRepository = new CompanyRepository();
-        return companyRepository.getByID(id);
+        return companyRepo.getByID(id);
     }
 
     @Override
     public void deleteById(Long id) {
-        CompanyRepository companyRepository = new CompanyRepository();
-        companyRepository.deleteById(id);
+        companyRepo.deleteById(id);
     }
 
     @Override
     public void updateById(Long id, Company newCompany) {
-        CompanyRepository companyRepository = new CompanyRepository();
-        companyRepository.updateById(id, newCompany);
+        companyRepo.updateById(id, newCompany);
     }
 
     @Override
     public void clear() {
-        CompanyRepository companyRepository = new CompanyRepository();
-        companyRepository.clear();
+        companyRepo.clear();
     }
 }

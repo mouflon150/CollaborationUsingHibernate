@@ -9,33 +9,30 @@ import javax.transaction.Transactional;
 @Transactional
 public class PresidentServiceImpl implements PresidentService {
 
+    private static final PresidentRepository presidentRepo = new PresidentRepository();
+
     @Override
     public void save(President president) {
-        PresidentRepository presidentRepository = new PresidentRepository();
-        presidentRepository.save(president);
+        presidentRepo.save(president);
     }
 
     @Override
     public President getById(Long id) {
-        PresidentRepository presidentRepository = new PresidentRepository();
-        return presidentRepository.getById(id);
+        return presidentRepo.getById(id);
     }
 
     @Override
     public void deleteById(Long id) {
-        PresidentRepository presidentRepository = new PresidentRepository();
-        presidentRepository.deleteById(id);
+        presidentRepo.deleteById(id);
     }
 
     @Override
     public void updateById(Long id, President newPresident) {
-        PresidentRepository presidentRepository = new PresidentRepository();
-        presidentRepository.updateById(id, newPresident);
+        presidentRepo.updateById(id, newPresident);
     }
 
     @Override
     public void clear() {
-        PresidentRepository presidentRepository = new PresidentRepository();
-        presidentRepository.clear();
+        presidentRepo.clear();
     }
 }

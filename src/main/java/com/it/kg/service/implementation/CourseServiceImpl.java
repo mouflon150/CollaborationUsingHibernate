@@ -10,39 +10,35 @@ import java.util.List;
 @Transactional
 public class CourseServiceImpl implements CourseService {
 
+    private static final CourseRepository courseRepo = new CourseRepository();
+
     @Override
     public void save(Course course) {
-        CourseRepository courseRepository = new CourseRepository();
-        courseRepository.save(course);
+        courseRepo.save(course);
     }
 
     @Override
     public Course getById(Long id) {
-        CourseRepository courseRepository = new CourseRepository();
-        return courseRepository.getById(id);
+        return courseRepo  .getById(id);
     }
 
     @Override
     public void updateById(Long id, Course newCourse) {
-        CourseRepository courseRepository = new CourseRepository();
-        courseRepository.updateById(id, newCourse);
+        courseRepo.updateById(id, newCourse);
     }
 
     @Override
     public List findAll() {
-        CourseRepository courseRepository = new CourseRepository();
-        return courseRepository.findAll();
+        return courseRepo.findAll();
     }
 
     @Override
     public void deleteById(Long id) {
-        CourseRepository courseRepository = new CourseRepository();
-        courseRepository.deleteById(id);
+        courseRepo.deleteById(id);
     }
 
     @Override
     public void clear() {
-        CourseRepository courseRepository = new CourseRepository();
-        courseRepository.clear();
+        courseRepo.clear();
     }
 }
